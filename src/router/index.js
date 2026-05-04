@@ -10,7 +10,7 @@ export default createRouter({
   history: createWebHistory(),
   routes: [
     { path: "/", component: Home },
-    { path: "/projects", component: Projects },
+//     { path: "/projects", component: Projects },
     { path: "/projects/:slug", component: ProjectDetail, props: true },
     { path: "/about", component: About },
 

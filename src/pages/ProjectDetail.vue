@@ -1,47 +1,128 @@
 <template>
-  <main class="page" v-if="project">
-    <header class="hero">
-      <h1>{{ project.title }}</h1>
-      <p class="lead">{{ project.summary }}</p>
-    </header>
+  <main v-if="project" class="casePage">
+    <section class="caseHero">
+      <div>
+        <router-link to="/#projects" class="backLink">← Back to projects</router-link>
 
-    <section class="grid">
-      <div class="block">
-        <h2>Role</h2>
-        <p>{{ project.role }}</p>
+        <p class="caseType">{{ project.type }} · {{ project.year }}</p>
+        <h1>{{ project.title }}</h1>
+        <p class="caseSummary">{{ project.summary }}</p>
+
+        <div class="caseTags">
+          <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
+        </div>
       </div>
 
-      <div class="block">
-        <h2>Tools & methods</h2>
-        <ul class="list">
-          <li v-for="t in project.tools" :key="t">{{ t }}</li>
-        </ul>
-      </div>
+      
+    </section>
 
-      <div class="block">
-        <h2>Overview</h2>
-        <p>{{ project.overview }}</p>
-      </div>
+    <section class="metaGrid">
+      <article class="metaCard">
+        <p>Role</p>
+        <strong>{{ project.role }}</strong>
+      </article>
 
-      <div class="block">
-        <h2>Challenge</h2>
-        <p>{{ project.challenge }}</p>
-      </div>
+      <article class="metaCard">
+        <p>Focus</p>
+        <strong>{{ project.highlight }}</strong>
+      </article>
 
-      <div class="block wide">
-        <h2>The process</h2>
-        <p>{{ project.process }}</p>
-      </div>
+      <article class="metaCard">
+        <p>Project type</p>
+        <strong>{{ project.type }}</strong>
+      </article>
+    </section>
 
-      <div class="block wide">
-        <h2>Final results</h2>
-        <p>{{ project.results }}</p>
-      </div>
+    <section class="contentGrid">
+      <article class="contentBlock wide">
+        <p class="label">Overview</p>
+        <h2>Project context</h2>
+        <p>{{ project.caseStudy.intro }}</p>
+      </article>
+
+      <article class="contentBlock">
+        <p class="label">Challenge</p>
+        <h2>The problem</h2>
+        <p>{{ project.caseStudy.challenge }}</p>
+      </article>
+
+      <article class="contentBlock">
+        <p class="label">Goal</p>
+        <h2>What I aimed to solve</h2>
+        <p>{{ project.caseStudy.goal }}</p>
+      </article>
+
+      <article class="contentBlock wide">
+        <p class="label">Contribution</p>
+        <h2>My role</h2>
+        <p>{{ project.caseStudy.contribution }}</p>
+      </article>
+
+	<article class="contentBlock wide processBlock">
+  <div class="processGrid">
+    <div>
+      <p class="label">Process</p>
+      <h2>How I approached it</h2>
+
+      <ol class="processList">
+        <li v-for="step in project.caseStudy.process" :key="step">
+          {{ step }}
+        </li>
+      </ol>
+    </div>
+
+    <div v-if="project.caseImages?.process1" class="processImageCard">
+      <img
+        :src="project.caseImages.process1"
+        :alt="`${project.title} process`"
+      />
+    </div>
+  </div>
+</article>
+
+<article
+  v-if="project.caseImages?.process2"
+  class="contentBlock wide processWideImage"
+>
+  <img
+    :src="project.caseImages.process2"
+    :alt="`${project.title} process overview`"
+  />
+</article>
+
+<section
+  v-if="project.caseImages?.results?.length"
+  class="resultsSection"
+>
+  <div class="resultsIntro">
+    <p class="label">Final results</p>
+    <h2>The final prototype</h2>
+    <p>{{ project.caseStudy.outcome }}</p>
+  </div>
+
+  <div class="resultsGallery">
+    <img
+      v-for="image in project.caseImages.results.slice(0, 8)"
+      :key="image"
+      :src="image"
+      :alt="`${project.title} final result screen`"
+    />
+  </div>
+</section>
+
+
+
+      <article class="contentBlock">
+        <p class="label">Reflection</p>
+        <h2>What I learned</h2>
+        <p>{{ project.caseStudy.reflection }}</p>
+      </article>
     </section>
   </main>
 
-  <main v-else class="page">
-    <p>Projekt hittades inte.</p>
+  <main v-else class="casePage">
+    <p>Project not found.</p>
+    <router-link to="/#projects">Back to projects</router-link>
   </main>
 </template>
 
@@ -51,34 +132,292 @@ import { useRoute } from "vue-router"
 import { projects } from "../data/projects"
 
 const route = useRoute()
-const project = computed(() => projects.find(p => p.slug === route.params.slug))
+
+const project = computed(() =>
+  projects.find((item) => item.slug === route.params.slug)
+)
 </script>
 
 <style scoped>
-.page { max-width: 1100px; margin: 0 auto; padding: 40px 20px 80px; }
-.hero {
-  border-radius: 26px;
-  padding: 32px 24px;
-  background: linear-gradient(180deg, #bfe2ff, #d9d8ff);
-  text-align: center;
+.casePage {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 48px 20px 96px;
 }
-.hero h1 { margin: 0 0 10px; font-size: 44px; }
-.lead { margin: 0 auto; max-width: 75ch; line-height: 1.7; }
 
-.grid {
-  margin-top: 26px;
+.caseHero {
+  display: block;
+  padding: 48px;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at top right, rgba(221, 214, 254, 0.8), transparent 36%),
+    linear-gradient(135deg, #dbeafe, var(--bg));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+}
+
+
+.backLink {
+  display: inline-flex;
+  margin-bottom: 24px;
+  color: #334155;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.backLink:hover {
+  color: #0f172a;
+}
+
+.caseType {
+  margin: 0 0 12px;
+  color: #6366f1;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.caseHero h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(48px, 7vw, 86px);
+  line-height: 0.95;
+  letter-spacing: -0.07em;
+}
+
+.caseSummary {
+  margin: 22px 0 0;
+  max-width: 62ch;
+  color: #334155;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.caseTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 24px;
+}
+
+.caseTags span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.metaCard,
+.contentBlock {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.055);
+}
+
+.metaCard {
+  padding: 20px;
+}
+
+.metaCard p {
+  margin: 0 0 8px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.metaCard strong {
+  color: #0f172a;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.contentGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 18px;
+  margin-top: 18px;
 }
-.block {
-  background: #fff;
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+
+.contentBlock {
+  padding: 24px;
 }
-.block.wide { grid-column: 1 / -1; }
-.block h2 { margin: 0 0 10px; font-size: 18px; }
-.block p { margin: 0; color: #374151; line-height: 1.7; }
-.list { margin: 0; padding-left: 18px; color: #374151; }
+
+.contentBlock.wide {
+  grid-column: 1 / -1;
+}
+
+.label {
+  margin: 0 0 10px;
+  color: #6366f1;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contentBlock h2 {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.contentBlock p {
+  margin: 0;
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.processList {
+  margin: 0;
+  padding-left: 20px;
+  color: #334155;
+  line-height: 1.8;
+}
+
+.processList li {
+  padding-left: 6px;
+  margin: 8px 0;
+}
+.processBlock {
+  padding: 28px;
+}
+
+.processGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.processImageCard {
+  padding: 16px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top left, rgba(221, 214, 254, 0.45), transparent 34%),
+    linear-gradient(135deg, #ffffff, #eef2ff);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.processImageCard img,
+.processWideImage img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+}
+
+.processWideImage {
+  padding: 20px;
+  background:
+    radial-gradient(circle at top right, rgba(191, 219, 254, 0.3), transparent 34%),
+    linear-gradient(135deg, #ffffff, #f8fafc);
+}
+
+@media (max-width: 900px) {
+  .processGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.resultsBlock {
+  padding: 32px;
+}
+
+.resultsBlock > p:not(.label) {
+  max-width: 860px;
+  margin-bottom: 28px;
+}
+
+.resultsGallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  padding: 28px;
+  border-radius: 28px;
+  background: #dcd8ff;
+}
+
+.resultsGallery img {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 28px rgba(30, 20, 60, 0.12));
+}
+
+.resultsGallery img:nth-child(2),
+.resultsGallery img:nth-child(4),
+.resultsGallery img:nth-child(6) {
+  margin-top: 56px;
+}
+
+
+.resultsGallery img:nth-child(8) {
+  margin-top: 56px;
+}
+
+.resultsSection {
+  grid-column: 1 / -1;
+  margin-top: 18px;
+}
+
+.resultsIntro {
+  margin-bottom: 24px;
+}
+
+.resultsIntro h2 {
+  margin: 0 0 14px;
+  color: #0f172a;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.resultsIntro p:not(.label) {
+  margin: 0;
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.8;
+}
+@media (max-width: 900px) {
+  .caseHero,
+  .contentGrid,
+  .metaGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .caseHero {
+    padding: 24px;
+  }
+
+  .heroVisual {
+    min-height: 280px;
+  }
+  @media (max-width: 900px) {
+  .resultsGallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .resultsGallery img:nth-child(n) {
+    margin-top: 0;
+  }
+}
+}
 </style>
