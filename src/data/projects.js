@@ -19,7 +19,7 @@ import Job_Board2 from "../assets/images/Elevate/Job Board2.png"
 import Job_Board3 from "../assets/images/Elevate/Job Board3.png"
 import Messages from "../assets/images/Elevate/Messages.png"
 import Onboarding1 from "../assets/images/Elevate/Onboarding1.png"
-import Onboarding3 from "../assets/images/Elevate/Onboarding1.png"
+import Onboarding3 from "../assets/images/Elevate/Onboarding3.png"
 
 import quizhem from "../assets/images/communiQuiz/Hem.png"
 import quizLoggaIn from "../assets/images/communiQuiz/Logga in.png"
