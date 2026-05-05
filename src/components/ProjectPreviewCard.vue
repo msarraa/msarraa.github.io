@@ -16,14 +16,22 @@ import BaseTag from "./ui/BaseTag.vue"
       </router-link>
     </div>
 
-    <div class="projectVisual">
-      <img
-        v-for="src in project.heroImages"
-        :key="src"
-        :src="src"
-        :alt="project.title"
-      />
-    </div>
+<div
+  class="projectVisual"
+  :class="{ systemVisual: project.visualType === 'system' }"
+>
+  <div
+    class="imageStack"
+    :class="{ systemImageStack: project.visualType === 'system' }"
+  >
+    <img
+      v-for="src in project.heroImages"
+      :key="src"
+      :src="src"
+      :alt="project.title"
+    />
+  </div>
+</div>
   </article>
 </template>
 
@@ -104,13 +112,43 @@ defineProps({
   border-radius: 22px 0 0 22px;
 }
 
-.projectVisual img {
+.imageStack img {
   width: 190px;
   max-height: 445px;
   object-fit: contain;
   display: block;
 }
+.systemVisual {
+  padding: 42px;
+}
 
+.systemImageStack {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.systemImageStack img {
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 18px;
+  filter: drop-shadow(0 18px 28px rgba(20, 20, 40, 0.18));
+}
+
+.imageStack {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+}
 @media (max-width: 900px) {
   .projectCard {
     grid-template-columns: 1fr;
@@ -132,8 +170,8 @@ defineProps({
     padding: 28px;
   }
 
-  .projectVisual img {
-    width: 150px;
-  }
+.imageStack img {
+  width: 150px;
+}
 }
 </style>

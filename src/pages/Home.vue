@@ -19,7 +19,6 @@
 
 
     <div class="actions">
-  <BaseButton href="#projects">View Projects</BaseButton>
   <BaseButton to="/about" variant="secondary">About Me</BaseButton>
 </div>
 

@@ -1,3 +1,15 @@
+import krav from "../assets/images/exjobb/examenskrav.png"
+import ej1 from "../assets/images/exjobb/feedback-ej-uppfyllda1.png"
+import ej2 from "../assets/images/exjobb/feedback-ej-uppfyllda2.png"
+import uppfyllda1 from "../assets/images/exjobb/uppfyllda-krav.png"
+import uppfyllda2 from "../assets/images/exjobb/feedback-uppfyllda2.png"
+import uppfyllda3 from "../assets/images/exjobb/feedback-uppfyllda3.png"
+import meny from "../assets/images/exjobb/meny.png"
+import planering1 from "../assets/images/exjobb/planering1.png"
+import System_Architecture from "../assets/images/exjobb/System-Architecture.png"
+import System_Arkitektur from "../assets/images/exjobb/arkitektur.png"
+
+
 import process1 from "../assets/images/Elevate/process1.png"
 import process2 from "../assets/images/Elevate/process2.png"
 import Event from "../assets/images/Elevate/Event.png"
@@ -21,68 +33,183 @@ import quiz7 from "../assets/images/communiQuiz/quiz7.png"
 
 
 export const projects = [
-  {
-    slug: "elevate",
-    title: "Elevate",
-    type: "UX / Product Design",
-    year: "2025",
+	{
+    slug: "study-progression",
+    title: "ProgressPath",
+    type: "UX Engineering / System Design",
+    year: "2026",
     summary:
-      "A digital platform designed to make work opportunities more accessible for people with disabilities.",
-    role: "UX Research · Product Design · Accessibility",
-    tags: ["UX Research", "Accessibility", "Product Strategy", "Prototyping"],
-    highlight: "Inclusive employment platform",
-    heroImages: ["/src/assets/images/Elevate/Onboarding3.png", "/src/assets/images/Elevate/Explore.png"],
-    
+      "An explainable decision-support system for academic planning that combines rule-based reasoning, structured data modeling, and user-centered interface design to make complex progression requirements understandable, trustworthy, and actionable.",
+    role: "System Design · UX · Implementation",
+    tags: ["System Design", "UX Engineering", "Rule-Based Logic", "Explainability", "Data Modeling", "Decision Support"],
+    highlight: "Trustworthy decision-support interface",
+	visualType: "system",
+    heroImages: [System_Arkitektur],
 	caseImages: {
-		process1: process1,
-		process2: process2,
 		results: [
-		Onboarding1,
-		Onboarding3,
-		Explore,
-		Messages,
-		Job_Board2,
-		Job_Board3,
-		Gig_page,
-		Event,
+			meny,
+			planering1,
+			krav,
+			ej1,
+			ej2,
+			uppfyllda1,
+			uppfyllda2,
+			uppfyllda3,
 		],
-	},
+		}, 
     caseStudy: {
       intro:
-        "Elevate explores how digital platforms can support more inclusive access to flexible work, training, and peer support.",
+        "This project explored how formal academic regulations can be transformed into an explainable decision-support system that helps students understand study progression, degree requirements, and alternative academic trajectories.",
       challenge:
-        "People with disabilities often face barriers when looking for work, including inaccessible processes, lack of confidence, and limited flexible opportunities.",
+        "Academic progression is governed by complex, rule-based requirements, yet existing systems often present fragmented information without helping users interpret what their records actually mean. The challenge was to bridge formal correctness with human understanding.",
       goal:
-        "The goal was to design a platform that feels approachable, supportive, and practical — helping users discover opportunities while building confidence over time.",
+        "The goal was to design a trustworthy system that separates formal reasoning from interface presentation, ensuring technically correct outcomes while making complex decisions transparent and understandable for users.",
       contribution:
-        "I contributed to user needs analysis, product structure, user flows, prototype design, and concept development in an international team.",
+        "I designed and implemented the system architecture, translated progression requirements into structured rule logic, developed explanation-focused interfaces, and conducted user evaluations focused on clarity, trust, and perceived control..",
       process: [
-        "Explored the problem space and identified user needs.",
-        "Mapped core flows for finding opportunities, training, and support.",
-        "Designed prototype screens focused on clarity and accessibility.",
-        "Iterated the concept based on feedback and team discussions.",
+        "Mapped complex academic regulations into structured rule systems",
+        "Designed modular architecture separating reasoning, explanations, and UI",
+        "Developed progressive disclosure interfaces for explanation depth",
+        "Evaluated user understanding, trust, and system clarity through pilot and user studies",
       ],
       outcome:
-        "The final concept presents a more inclusive pathway into work through flexible opportunities, learning resources, and community support.",
+        "The result was a trustworthy planning system that demonstrates how rule-based reasoning and explanation-driven UX can support informed decision-making in complex domains without replacing human judgment.",
       reflection:
-        "This project strengthened my understanding of how UX can support social impact when accessibility, trust, and user confidence are treated as core product requirements.",
-    },
+        "This project strongly reflects my profile as a hybrid UX engineer and systems thinker: combining backend logic, structured problem-solving, and human-centered design to make technically complex systems both rigorous and understandable.",
+		},
+		keyDesignPrinciples: [
+  {
+    title: "Formal Correctness",
+    description:
+      "Built on explicit rule-based logic to ensure that recommendations and progression outcomes align with formal academic requirements rather than assumptions or opaque automation.",
+  },
+  {
+    title: "Explainability",
+    description:
+      "System conclusions are derived from transparent reasoning structures, allowing users to understand why requirements are fulfilled, unmet, or constrained.",
+  },
+  {
+    title: "Trustworthy Interaction",
+    description:
+      "Designed to support user trust through traceable logic, clear feedback, and responsible communication of system limitations.",
+  },
+  {
+    title: "Human-Centered Decision Support",
+    description:
+      "Supports informed decision-making without replacing user judgment, preserving autonomy while guiding users through complex planning scenarios.",
+  },
+  {
+    title: "Progressive Disclosure",
+    description:
+      "Balances clarity and cognitive load by presenting high-level insights first, while allowing deeper explanatory detail through interaction when needed.",
+  },
+],
+    
+  },
+  {
+  slug: "elevate",
+  title: "Elevate",
+  type: "UX / Product Design",
+  year: "2025",
+
+  summary:
+    "An inclusive employment platform designed to empower people with disabilities in Western Australia through flexible work opportunities, training, and community support.",
+
+  role:
+    "UX Research · Product Design · Accessibility · Product Strategy",
+
+  tags: [
+    "UX Research",
+    "Accessibility",
+    "Product Strategy",
+    "Prototyping",
+  ],
+
+  highlight:
+    "Inclusive employment platform",
+
+  heroImages: [
+    "/src/assets/images/Elevate/Onboarding3.png",
+    "/src/assets/images/Elevate/Explore.png",
+  ],
+
+  caseImages: {
+    process1: process1,
+    process2: process2,
+
+    results: [
+      Onboarding1,
+      Onboarding3,
+      Explore,
+      Messages,
+      Job_Board2,
+      Job_Board3,
+      Gig_page,
+      Event,
+    ],
   },
 
+  caseStudy: {
+    intro:
+      "Elevate is an inclusive employment platform developed in collaboration with students from Edith Cowan University in Western Australia. The project explores how digital design can create more accessible pathways into employment for people with disabilities by combining flexible work opportunities, skill development, and community-based support.",
+
+    challenge:
+      "In Western Australia, only 48% of people with disabilities are employed, while unemployment rates remain more than twice as high as those of the general population. Traditional employment systems often feel inaccessible, overwhelming, or poorly aligned with diverse user needs, creating barriers to meaningful workforce participation.",
+
+    goal:
+      "The goal was to design a supportive and approachable digital platform that lowers barriers to employment by offering alternative pathways such as gig work, volunteer opportunities, training, and peer support — enabling users to gradually build confidence, experience, and independence.",
+
+    contribution:
+      "I contributed to concept development, user needs analysis, platform structure, feature refinement, and prototype design. My role focused on shaping the platform’s value proposition, ensuring accessibility and clarity, and helping define a product structure that directly addressed the practical and emotional barriers users face when entering the workforce.",
+
+    process: [
+      "Conducted collaborative research and ideation sessions with Edith Cowan University students to understand barriers within disability employment.",
+      "Identified user pain points related to accessibility, confidence, opportunity discovery, and social isolation.",
+      "Defined the platform’s strategic direction by expanding beyond traditional employment into gigs, volunteering, training, and community support.",
+      "Developed user flows, structural concepts, and interface prototypes focused on accessibility, clarity, and gradual progression.",
+      "Refined the concept iteratively through team collaboration, discussion, and design feedback.",
+    ],
+
+    outcome:
+      "The final prototype presents a flexible employment ecosystem that supports users through multiple pathways — including jobs, gigs, volunteer work, training, and peer communities. By focusing on strengths beyond traditional CVs and creating a supportive environment, Elevate promotes confidence-building, social connection, and more inclusive workforce participation.",
+
+    reflection:
+      "This project strengthened my understanding of how UX and product design can address social inequity when accessibility, trust, and empowerment are treated as foundational product principles. It reinforced the importance of designing not only for usability, but for confidence, inclusion, and long-term opportunity creation.",
+  },
+},
 
   {
   slug: "communiquiz",
-  title: "CommuniQuiz",
-  type: "Mobile App Concept",
-  year: "2024",
-  summary:
-    "A mobile application prototype designed to make music quizzes simple, fun, and engaging.",
-  role: "UX Research · Interaction Design · Usability Testing",
-  tags: ["UX Research", "User Flows", "Figma", "Testing", "Interaction Design"],
-  highlight: "Community-based music quiz experience",
 
-  heroImages: [quizLoggaIn, quizhem],
-    caseImages: {
+  title: "CommuniQuiz",
+
+  type: "Mobile App Concept",
+
+  year: "2024",
+
+  summary:
+    "A community-focused mobile application prototype that makes music quizzes easier to create, join, and enjoy through user-centered design, social interaction, and playful engagement.",
+
+  role:
+    "UX & Product Design · UX Research · Interaction Design · Usability Testing",
+
+  tags: [
+    "UX Research",
+    "Interaction Design",
+    "User Flows",
+    "Figma",
+    "Usability Testing",
+  ],
+
+  highlight:
+    "Community-based music quiz experience",
+
+  heroImages: [
+    quizLoggaIn,
+    quizhem,
+  ],
+
+  caseImages: {
     results: [
       quizhem,
       quiz1,
@@ -97,58 +224,32 @@ export const projects = [
 
   caseStudy: {
     intro:
-      "CommuniQuiz is a mobile application prototype created to simplify how people create, join, and participate in music quizzes within a community.",
-    challenge:
-      "Music quizzes are popular and engaging, but they can be time-consuming to prepare and difficult to organize in a smooth digital experience.",
-    goal:
-      "The goal was to design a mobile experience that makes quiz creation and participation simple, social, and easy to understand.",
-    contribution:
-      "I worked with user research, ideation, user flows, prototyping, usability testing, and iterative design improvements.",
-    process: [
-      "Explored how people currently create and participate in music quizzes.",
-      "Mapped key user flows for joining quizzes, creating quizzes, and navigating the app.",
-      "Designed prototype screens in Figma with focus on clarity and engagement.",
-      "Iterated the concept based on feedback to improve navigation and core interactions.",
-    ],
-    outcome:
-      "The final prototype supports users in logging in, exploring quiz options, creating quizzes, and participating in a clearer and more engaging mobile experience.",
-    reflection:
-      "This project strengthened my understanding of how interaction design, information structure, and small usability decisions can make a social app feel more intuitive and engaging.",
-  },
+      "CommuniQuiz is a mobile application prototype developed in collaboration with MusikApp to make music quizzes more accessible, engaging, and socially interactive. By combining user research, iterative design, and testing, the platform enables users to create custom quizzes, auto-generate themed experiences, and participate in public quizzes within a connected music-focused community.",
 
+    challenge:
+      "Music quizzes are widely enjoyed in social settings such as student events, pubs, and private gatherings, but organizing them often requires significant preparation, including creating questions, selecting songs, and managing participants. Existing experiences can be time-consuming and fragmented, highlighting the need for a more intuitive and engaging digital solution.",
+
+    goal:
+      "The goal was to design a mobile experience that simplifies both quiz creation and participation while maintaining creativity, social connection, and enjoyment. The product needed to reduce preparation barriers while supporting both casual users and more competitive quiz participants.",
+
+    contribution:
+      "I contributed across both research and design. My responsibilities included conducting surveys and analyzing participant data to identify user needs, contributing to ideation and product recommendations, participating in brainstorming and wireframe development, designing parts of the final prototype, creating the project logo, and serving as group secretary to document decisions and support collaborative communication.",
+
+    process: [
+      "Conducted surveys and interviews with quiz participants and organizers to identify user behaviors, needs, and pain points.",
+      "Analyzed findings to define priorities around usability, creativity, accessibility, and time efficiency.",
+      "Applied a Design-Build-Test approach to develop wireframes and prototype concepts in Figma.",
+      "Iteratively tested each design stage with target users and refined navigation, features, and interface clarity based on feedback.",
+      "Introduced features such as custom quiz creation, public quiz exploration, and random quiz generation to better align with user expectations.",
+    ],
+
+    outcome:
+      "The final prototype became CommuniQuiz — a mobile application where users can create personalized music quizzes, auto-generate themed quizzes, join public community quizzes, and track their progress. Structured around Home, Explore, and Profile sections, the app provides an intuitive and playful experience that supports creativity, competition, and social interaction for music lovers aged 15–40.",
+
+    reflection:
+      "This project strengthened my understanding of how research-driven interaction design can transform familiar social activities into more accessible and engaging digital products. It reinforced the value of iterative testing, user feedback, and balancing functionality with enjoyment when designing community-centered experiences.",
+  },
 },
 
-  {
-    slug: "study-progression",
-    title: "Rule-based Study Progression",
-    type: "UX Engineering / System Design",
-    year: "2025",
-    summary:
-      "A rule-based planning system combining structured logic, backend reasoning, and understandable user interfaces.",
-    role: "System Design · UX · Implementation",
-    tags: ["Systems Thinking", "Java", "UX", "Data Modeling"],
-    highlight: "Trustworthy decision-support interface",
-    heroImages: ["/src/assets/images/study-progression-1.png"],
-
-    caseStudy: {
-      intro:
-        "This project focused on a rule-based decision-support system for study progression, combining structured logic with a user-facing planning interface.",
-      challenge:
-        "Study progression rules can be complex, and users need support that is both technically correct and understandable.",
-      goal:
-        "The goal was to create a system that separates business logic from presentation while helping users understand recommendations and outcomes.",
-      contribution:
-        "I worked on rule-based reasoning, data modeling, interface design, and user studies to evaluate clarity and trust.",
-      process: [
-        "Analyzed progression rules and translated them into structured logic.",
-        "Designed a separation between reasoning logic and presentation.",
-        "Created interface concepts to explain decisions clearly.",
-        "Tested understandability and iterated the system experience.",
-      ],
-      outcome:
-        "The result was a structured planning system that supports clearer decision-making and communicates complex rules in a more understandable way.",
-      reflection:
-        "This project represents my hybrid profile strongly: technical reasoning, structured systems thinking, and UX focused on trust and clarity.",
-    },
-  },
+  
 ]

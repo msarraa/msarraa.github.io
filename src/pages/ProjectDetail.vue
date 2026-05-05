@@ -2,18 +2,20 @@
   <main v-if="project" class="casePage">
     <section class="caseHero">
       <div>
-        <router-link to="/#projects" class="backLink">← Back to projects</router-link>
+        <router-link to="/#projects" class="backLink">
+          ← Back to projects
+        </router-link>
 
         <p class="caseType">{{ project.type }} · {{ project.year }}</p>
         <h1>{{ project.title }}</h1>
         <p class="caseSummary">{{ project.summary }}</p>
 
         <div class="caseTags">
-          <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
+          <span v-for="tag in project.tags" :key="tag">
+            {{ tag }}
+          </span>
         </div>
       </div>
-
-      
     </section>
 
     <section class="metaGrid">
@@ -35,86 +37,103 @@
 
     <section class="contentGrid">
       <article class="contentBlock wide">
-        <p class="label">Overview</p>
-        <h2>Project context</h2>
+
+        <h2>Overview</h2>
         <p>{{ project.caseStudy.intro }}</p>
       </article>
 
       <article class="contentBlock">
-        <p class="label">Challenge</p>
-        <h2>The problem</h2>
+        <h2>Challenge</h2>
         <p>{{ project.caseStudy.challenge }}</p>
       </article>
 
       <article class="contentBlock">
-        <p class="label">Goal</p>
-        <h2>What I aimed to solve</h2>
+        <h2>Goal</h2>
         <p>{{ project.caseStudy.goal }}</p>
       </article>
 
       <article class="contentBlock wide">
-        <p class="label">Contribution</p>
-        <h2>My role</h2>
+        <h2>Contribution</h2>
         <p>{{ project.caseStudy.contribution }}</p>
       </article>
 
-	<article class="contentBlock wide processBlock">
-  <div class="processGrid">
-    <div>
-      <p class="label">Process</p>
-      <h2>How I approached it</h2>
+      <article
+        v-if="project.keyDesignPrinciples?.length"
+        class="contentBlock wide principlesBlock"
+      >
+        <div class="principlesIntro">
+          <h2>Key design principles</h2>
+          <p>
+            Core principles that shaped the system’s logic, interaction design,
+            and trustworthiness.
+          </p>
+        </div>
 
-      <ol class="processList">
-        <li v-for="step in project.caseStudy.process" :key="step">
-          {{ step }}
-        </li>
-      </ol>
-    </div>
+        <div class="principlesGrid">
+          <article
+            v-for="principle in project.keyDesignPrinciples"
+            :key="principle.title"
+            class="principleCard"
+          >
+            <h3>{{ principle.title }}</h3>
+            <p>{{ principle.description }}</p>
+          </article>
+        </div>
+      </article>
 
-    <div v-if="project.caseImages?.process1" class="processImageCard">
-      <img
-        :src="project.caseImages.process1"
-        :alt="`${project.title} process`"
-      />
-    </div>
-  </div>
-</article>
+      <article class="contentBlock wide processBlock">
+        <div class="processGrid">
+          <div>
 
-<article
-  v-if="project.caseImages?.process2"
-  class="contentBlock wide processWideImage"
->
-  <img
-    :src="project.caseImages.process2"
-    :alt="`${project.title} process overview`"
-  />
-</article>
+            <h2>Process</h2>
 
-<section
-  v-if="project.caseImages?.results?.length"
-  class="resultsSection"
->
-  <div class="resultsIntro">
-    <p class="label">Final results</p>
-    <h2>The final prototype</h2>
-    <p>{{ project.caseStudy.outcome }}</p>
-  </div>
+            <ol class="processList">
+              <li v-for="step in project.caseStudy.process" :key="step">
+                {{ step }}
+              </li>
+            </ol>
+          </div>
 
-  <div class="resultsGallery">
-    <img
-      v-for="image in project.caseImages.results.slice(0, 8)"
-      :key="image"
-      :src="image"
-      :alt="`${project.title} final result screen`"
-    />
-  </div>
-</section>
+          <div v-if="project.caseImages?.process1" class="processImageCard">
+            <img
+              :src="project.caseImages.process1"
+              :alt="`${project.title} process`"
+            />
+          </div>
+        </div>
+      </article>
 
+      <article
+        v-if="project.caseImages?.process2"
+        class="contentBlock wide processWideImage"
+      >
+        <img
+          :src="project.caseImages.process2"
+          :alt="`${project.title} process overview`"
+        />
+      </article>
 
+      <section
+        v-if="project.caseImages?.results?.length"
+        class="resultsSection"
+      >
+        <div class="resultsIntro">
+          <h2>The final results</h2>
+          <p>{{ project.caseStudy.outcome }}</p>
+        </div>
 
-      <article class="contentBlock">
-        <p class="label">Reflection</p>
-        <h2>What I learned</h2>
+        <div class="resultsGallery">
+          <img
+            v-for="image in project.caseImages.results.slice(0, 8)"
+            :key="image"
+            :src="image"
+            :alt="`${project.title} final result screen`"
+          />
+        </div>
+      </section>
+
+      <article class="contentBlock wide">
+        <h2>Reflection</h2>
         <p>{{ project.caseStudy.reflection }}</p>
       </article>
     </section>
@@ -155,7 +174,6 @@ const project = computed(() =>
   border: 1px solid var(--border);
   box-shadow: var(--shadow-lg);
 }
-
 
 .backLink {
   display: inline-flex;
@@ -210,7 +228,6 @@ const project = computed(() =>
   font-size: 13px;
   font-weight: 700;
 }
-
 
 .metaGrid {
   display: grid;
@@ -285,6 +302,73 @@ const project = computed(() =>
   line-height: 1.8;
 }
 
+/* Principles */
+.principlesBlock {
+  padding: 30px;
+}
+
+.principlesIntro {
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.principlesIntro h2 {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.principlesIntro p:not(.label) {
+  margin: 0;
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.principleCard {
+  padding: 20px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at top left, rgba(221, 214, 254, 0.28), transparent 34%),
+    #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.principleCard h3 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.principleCard p {
+  margin: 0;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* Process */
+.processBlock {
+  padding: 28px;
+}
+
+.processGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 28px;
+  align-items: start;
+}
+
 .processList {
   margin: 0;
   padding-left: 20px;
@@ -295,16 +379,6 @@ const project = computed(() =>
 .processList li {
   padding-left: 6px;
   margin: 8px 0;
-}
-.processBlock {
-  padding: 28px;
-}
-
-.processGrid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 28px;
-  align-items: start;
 }
 
 .processImageCard {
@@ -330,47 +404,7 @@ const project = computed(() =>
     linear-gradient(135deg, #ffffff, #f8fafc);
 }
 
-@media (max-width: 900px) {
-  .processGrid {
-    grid-template-columns: 1fr;
-  }
-}
-.resultsBlock {
-  padding: 32px;
-}
-
-.resultsBlock > p:not(.label) {
-  max-width: 860px;
-  margin-bottom: 28px;
-}
-
-.resultsGallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-  padding: 28px;
-  border-radius: 28px;
-  background: #dcd8ff;
-}
-
-.resultsGallery img {
-  width: 100%;
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 18px 28px rgba(30, 20, 60, 0.12));
-}
-
-.resultsGallery img:nth-child(2),
-.resultsGallery img:nth-child(4),
-.resultsGallery img:nth-child(6) {
-  margin-top: 56px;
-}
-
-
-.resultsGallery img:nth-child(8) {
-  margin-top: 56px;
-}
-
+/* Results */
 .resultsSection {
   grid-column: 1 / -1;
   margin-top: 18px;
@@ -394,10 +428,36 @@ const project = computed(() =>
   font-size: 16px;
   line-height: 1.8;
 }
+
+.resultsGallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  padding: 28px;
+  border-radius: 28px;
+  background: #dcd8ff;
+}
+
+.resultsGallery img {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 28px rgba(30, 20, 60, 0.12));
+}
+
+.resultsGallery img:nth-child(2),
+.resultsGallery img:nth-child(4),
+.resultsGallery img:nth-child(6),
+.resultsGallery img:nth-child(8) {
+  margin-top: 56px;
+}
+
 @media (max-width: 900px) {
   .caseHero,
   .contentGrid,
-  .metaGrid {
+  .metaGrid,
+  .processGrid,
+  .principlesGrid {
     grid-template-columns: 1fr;
   }
 
@@ -405,10 +465,6 @@ const project = computed(() =>
     padding: 24px;
   }
 
-  .heroVisual {
-    min-height: 280px;
-  }
-  @media (max-width: 900px) {
   .resultsGallery {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
@@ -418,6 +474,5 @@ const project = computed(() =>
   .resultsGallery img:nth-child(n) {
     margin-top: 0;
   }
-}
 }
 </style>

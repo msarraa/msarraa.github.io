@@ -15,11 +15,24 @@ export default createRouter({
     { path: "/about", component: About },
 
   ],
-  scrollBehavior() {
-	    // När du går till Home med hash: scrolla till sektionen
-    if (to.hash) return { el: to.hash, behavior: "smooth" }
-    return { top: 0 }
-    return { top: 0 }
+
+    scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: "smooth",
+      }
+    }
+
+    return {
+      top: 0,
+      behavior: "smooth",
+    }
   },
 })
+
 
