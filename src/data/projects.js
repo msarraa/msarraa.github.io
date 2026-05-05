@@ -129,8 +129,8 @@ export const projects = [
     "Inclusive employment platform",
 
   heroImages: [
-    "/src/assets/images/Elevate/Onboarding3.png",
-    "/src/assets/images/Elevate/Explore.png",
+    Onboarding3,
+    Explore,
   ],
 
   caseImages: {
